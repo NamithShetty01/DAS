@@ -1,5 +1,14 @@
 package com.assignment.service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.assignment.dto.SubmissionGradeRequest;
 import com.assignment.dto.SubmissionResponse;
 import com.assignment.model.Assignment;
@@ -11,15 +20,8 @@ import com.assignment.repository.AssignmentRepository;
 import com.assignment.repository.SubmissionRepository;
 import com.assignment.security.CustomUserDetailsService;
 import com.assignment.util.AppException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Handles submission upload, retrieval, grading, and file download.

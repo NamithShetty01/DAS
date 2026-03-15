@@ -386,6 +386,14 @@ function statusBadge(status) {
     return `<span class="status-pill ${className}">${safe}</span>`;
 }
 
+function isPreviewableFile(fileName) {
+    if (!fileName) {
+        return false;
+    }
+    const ext = (fileName.split(".").pop() || "").toLowerCase();
+    return ["pdf", "txt", "png", "jpg", "jpeg", "gif", "webp"].includes(ext);
+}
+
 function assignmentCard(assignment) {
     const attachmentActions = assignment.attachmentDownloadUrl
         ? `<button class="btn btn-secondary assignment-download-btn" type="button" data-assignment-id="${assignment.id}" data-file-name="${assignment.attachmentFileName || "assignment-attachment"}">Open Material</button>`
@@ -551,7 +559,7 @@ async function loadSubmissionsTable(targetId, endpoint, allowDownload = false, a
         ? submissions.map((submission) => {
             const actions = [];
             if (allowView) {
-                actions.push(`<button class="btn btn-accent view-btn" type="button" data-submission-id="${submission.id}">View</button>`);
+                actions.push(`<button class="btn btn-accent view-btn" type="button" data-submission-id="${submission.id}" data-file-name="${submission.fileName || ""}">View</button>`);
             }
             if (allowDownload) {
                 actions.push(`<button class="btn btn-secondary download-btn" type="button" data-submission-id="${submission.id}" data-file-name="${submission.fileName}">Download</button>`);
@@ -591,7 +599,7 @@ function renderSubmissionsTable(targetId, submissions, allowDownload = false, al
         ? submissions.map((submission) => {
             const actions = [];
             if (allowView) {
-                actions.push(`<button class="btn btn-accent view-btn" type="button" data-submission-id="${submission.id}">View</button>`);
+                actions.push(`<button class="btn btn-accent view-btn" type="button" data-submission-id="${submission.id}" data-file-name="${submission.fileName || ""}">View</button>`);
             }
             if (allowDownload) {
                 actions.push(`<button class="btn btn-secondary download-btn" type="button" data-submission-id="${submission.id}" data-file-name="${submission.fileName}">Download</button>`);
@@ -979,6 +987,7 @@ function renderMySubmissionLog(targetId, submissions) {
             const deleteAction = isGraded
                 ? ""
                 : `<button class="btn btn-secondary delete-submission-btn" type="button" data-submission-id="${submission.id}">Delete</button>`;
+            const viewAction = `<button class="btn btn-accent view-btn" type="button" data-submission-id="${submission.id}" data-file-name="${submission.fileName || ""}">View</button>`;
 
             return `
             <tr>
@@ -989,7 +998,7 @@ function renderMySubmissionLog(targetId, submissions) {
                 <td>${submission.feedback || "Pending"}</td>
                 <td>${statusBadge(submission.status)}</td>
                 <td>
-                    <button class="btn btn-accent view-btn" type="button" data-submission-id="${submission.id}">View</button>
+                    ${viewAction}
                     <button class="btn btn-secondary download-btn" type="button" data-submission-id="${submission.id}" data-file-name="${submission.fileName}">Download</button>
                     ${deleteAction}
                 </td>
@@ -1034,6 +1043,15 @@ function bindViewButtons() {
     document.querySelectorAll(".view-btn").forEach((button) => {
         button.addEventListener("click", async () => {
             try {
+                const fileName = button.dataset.fileName || "";
+                if (fileName && !isPreviewableFile(fileName)) {
+                    const target = document.getElementById("submission-status") || document.getElementById("dashboard-status") || document.getElementById("grade-status");
+                    if (target) {
+                        target.className = "status-message status-error";
+                        target.textContent = "Preview is not available for this file type. Use Download.";
+                    }
+                    return;
+                }
                 await viewSubmissionFile(button.dataset.submissionId);
             } catch (error) {
                 const target = document.getElementById("submission-status") || document.getElementById("dashboard-status") || document.getElementById("grade-status");
@@ -1169,7 +1187,10 @@ async function initStudentDashboard() {
 
         if (table) {
             table.innerHTML = submissions.length
-                ? submissions.map((submission) => `
+                ? submissions.map((submission) => {
+                    const viewAction = `<button class="btn btn-accent view-btn" type="button" data-submission-id="${submission.id}" data-file-name="${submission.fileName || ""}">View</button>`;
+
+                    return `
                     <tr>
                         <td>${submission.assignmentTitle || submission.assignmentId}</td>
                         <td>${submission.fileName}</td>
@@ -1178,11 +1199,12 @@ async function initStudentDashboard() {
                         <td>${submission.feedback || "Pending"}</td>
                         <td>${statusBadge(submission.status)}</td>
                         <td>
-                            <button class="btn btn-accent view-btn" type="button" data-submission-id="${submission.id}">View</button>
+                            ${viewAction}
                             <button class="btn btn-secondary download-btn" type="button" data-submission-id="${submission.id}" data-file-name="${submission.fileName}">Download</button>
                         </td>
                     </tr>
-                `).join("")
+                `;
+                }).join("")
                 : `<tr><td colspan="7"><div class="empty-state">No submissions yet.</div></td></tr>`;
             bindViewButtons();
             bindDownloadButtons();
@@ -1658,7 +1680,7 @@ async function initGradeAssignmentPage() {
                     <p><strong>File:</strong> ${selected.fileName}</p>
                     <p><strong>Status:</strong> ${selected.status}</p>
                     <div class="button-row mt-16">
-                        <button class="btn btn-accent view-btn" type="button" data-submission-id="${selected.id}">Open File</button>
+                        <button class="btn btn-accent view-btn" type="button" data-submission-id="${selected.id}" data-file-name="${selected.fileName || ""}">Open File</button>
                         <button class="btn btn-secondary download-btn" type="button" data-submission-id="${selected.id}" data-file-name="${selected.fileName}">Download</button>
                     </div>
                 </div>
