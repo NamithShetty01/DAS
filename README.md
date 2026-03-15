@@ -127,7 +127,7 @@ Content-Type: application/json
 
 {
   "name": "Meera Rao",
-  "email": "meera.teacher@assignment.com",
+  "email": "teacher@assignment.com",
   "password": "Teacher@123",
   "role": "ROLE_ADMIN"
 }
