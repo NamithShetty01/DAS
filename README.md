@@ -48,11 +48,6 @@ assignment-system/
 - Swagger UI at `/swagger-ui.html`
 - Branded landing page plus polished student and teacher dashboards
 
-## Default Teacher Account
-
-- Email: `teacher@assignment.com`
-- Password: `Teacher@123`
-
 ## Configuration
 
 Application properties are already configured with the required values:
@@ -145,7 +140,7 @@ POST /api/auth/login
 Content-Type: application/json
 
 {
-  "email": "teacher@assignment.com",
+  "email": "meera.teacher@assignment.com",
   "password": "Teacher@123"
 }
 ```
@@ -306,7 +301,8 @@ Content-Type: application/json
 ## Notes
 
 - Users can register as either `ROLE_USER` or `ROLE_ADMIN` from the register page or the register API.
-- The seeded admin account remains available for immediate local testing.
+- The application no longer seeds a default `teacher@assignment.com` account.
+- The seeded admin account remains available for immediate local testing as `admin@gmail.com` / `Admin@123`.
 - Teachers can only view/manage their own courses, assignments, and related submissions.
 - Students can only view assignments from courses they joined using course codes.
 - Notifications are created when a teacher posts an assignment, a student submits an assignment, and a teacher grades a submission.
