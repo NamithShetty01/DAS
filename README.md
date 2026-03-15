@@ -140,7 +140,7 @@ POST /api/auth/login
 Content-Type: application/json
 
 {
-  "email": "meera.teacher@assignment.com",
+  "email": "teacher@assignment.com",
   "password": "Teacher@123"
 }
 ```
