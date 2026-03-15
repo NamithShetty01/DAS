@@ -53,7 +53,7 @@ assignment-system/
 Application properties are already configured with the required values:
 
 ```properties
-spring.data.mongodb.uri=mongodb://localhost:27017/assignmentDB
+spring.data.mongodb.uri=mongodb+srv://<DB_USERNAME>:<DB_PASSWORD>@dascluster.2dzbsy9.mongodb.net/assignmentDB?retryWrites=true&w=majority&appName=DASCluster
 spring.servlet.multipart.max-file-size=10MB
 spring.servlet.multipart.max-request-size=10MB
 app.upload.dir=uploads
@@ -61,7 +61,7 @@ app.upload.dir=uploads
 
 ## How to Run
 
-1. Start MongoDB locally on `mongodb://localhost:27017`.
+1. Configure MongoDB Atlas access (database user + Network Access IP allowlist).
 2. Open a terminal in the project root.
 3. Run `mvn clean spring-boot:run`.
 4. Open `http://localhost:8080/`.
