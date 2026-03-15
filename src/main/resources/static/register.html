@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Digital Assignment Submission System</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/app.js"></script>
+</head>
+<body id="register-page" class="auth-page">
+<main class="auth-shell">
+    <section class="hero-card">
+        <div class="hero-copy">
+            <div class="eyebrow">Get Started</div>
+            <h1>Create your CourseFlow account</h1>
+        </div>
+        <div class="auth-panel">
+            <h2>Register</h2>
+            <form id="register-form" class="form-grid">
+                <div class="field">
+                    <label for="name">Full name</label>
+                    <input id="name" type="text" placeholder="Enter full name" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="name@example.com" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="At least 6 characters" required>
+                </div>
+                <div class="field">
+                    <label for="role">Register as</label>
+                    <select id="role" required>
+                        <option value="ROLE_USER">Student</option>
+                        <option value="ROLE_ADMIN">Teacher</option>
+                    </select>
+                </div>
+                <div class="button-row">
+                    <button class="btn btn-primary" type="submit">Register</button>
+                    <a class="btn btn-secondary" href="/login.html">Back to login</a>
+                </div>
+                <div id="auth-status"></div>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

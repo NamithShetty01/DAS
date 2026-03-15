@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home – CourseFlow</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/app.js"></script>
+</head>
+<body id="student-dashboard-page">
+<div class="gc-app">
+    <div class="gc-overlay" id="gc-overlay"></div>
+    <div class="gc-main">
+        <header class="gc-topbar">
+            <div class="gc-topbar-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="student-brand" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#b45f44"/><stop offset="100%" stop-color="#2c6b5b"/></linearGradient></defs><rect width="24" height="24" rx="7" fill="url(#student-brand)"/><path d="M6 8.5c0-1.1.9-2 2-2h8.6c.53 0 1.04.21 1.41.59l1.4 1.41V17a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8.5Z" fill="rgba(255,255,255,.92)"/><path d="M17 9h-2.25a1.75 1.75 0 0 1-1.75-1.75V5.5" fill="none" stroke="#b45f44" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12h6M9 15h4" fill="none" stroke="#2d3a3a" stroke-width="1.4" stroke-linecap="round"/></svg>
+                CourseFlow
+            </div>
+            <div class="gc-topbar-spacer"></div>
+            <button class="gc-icon-btn join-trigger-btn" id="gc-join-class-toggle" title="Join course" aria-label="Join course">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <span>Join Course</span>
+            </button>
+            <div class="gc-user-chip">
+                <span class="gc-user-name" data-user-name></span>
+                <div class="gc-user-avatar" id="gc-user-avatar"></div>
+            </div>
+        </header>
+
+        <!-- Join course dialog -->
+        <div id="gc-join-dialog" class="gc-join-dialog hidden">
+            <div class="gc-join-dialog-box">
+                <div class="gc-join-dialog-head">
+                    <h2>Join course</h2>
+                    <button class="gc-icon-btn" id="gc-join-close" type="button" title="Close join dialog" aria-label="Close join dialog">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    </button>
+                </div>
+                <p class="muted dialog-note">Ask your teacher for the access code, then enter it here.</p>
+                <form id="course-join-form" class="form-grid">
+                    <div class="field">
+                        <label for="joinCode">Access code</label>
+                        <input id="joinCode" class="join-code-input" type="text" placeholder="Example: DATA123" required>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn btn-primary" type="submit">Join</button>
+                        <button class="btn btn-secondary" type="button" id="gc-join-cancel">Cancel</button>
+                    </div>
+                    <div id="course-status"></div>
+                </form>
+            </div>
+        </div>
+
+        <main class="gc-content">
+            <div class="gc-page-header">
+                <div>
+                    <h1>Welcome, <span data-user-name></span></h1>
+                    <p>See your courses, open posted work, submit files, and track grades.</p>
+                </div>
+            </div>
+
+            <section class="stats-grid">
+                <article class="stat"><span>Assignments</span><strong id="assignment-count">0</strong></article>
+                <article class="stat"><span>Submissions</span><strong id="submission-count">0</strong></article>
+                <article class="stat"><span>Graded</span><strong id="graded-count">0</strong></article>
+                <article class="stat"><span>Notifications</span><strong id="notification-count">0</strong></article>
+            </section>
+
+            <div id="dashboard-status"></div>
+
+            <section class="dashboard-grid">
+                <article class="panel span-7">
+                    <div class="section-header">
+                        <h2>Your Courses</h2>
+                        <p>Courses you joined appear here. Click a card to open the workspace.</p>
+                    </div>
+                    <div id="student-course-list" class="gc-course-grid"></div>
+                </article>
+
+                <article class="panel span-5 dashboard-side-panel">
+                    <div class="section-header">
+                        <h2>Notifications</h2>
+                        <p>Recent class activity and updates.</p>
+                    </div>
+                    <div id="student-notifications" class="notification-list"></div>
+                </article>
+            </section>
+        </main>
+    </div>
+</div>
+</body>
+</html>

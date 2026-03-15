@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course – CourseFlow</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/app.js"></script>
+</head>
+<body id="course-stream-page">
+<div class="gc-app">
+    <div class="gc-overlay" id="gc-overlay"></div>
+    <div class="gc-main">
+        <header class="gc-topbar">
+            <button class="gc-hamburger" id="gc-toggle-mobile" aria-label="Open navigation">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+            <div class="gc-topbar-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="stream-brand" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#b45f44"/><stop offset="100%" stop-color="#2c6b5b"/></linearGradient></defs><rect width="24" height="24" rx="7" fill="url(#stream-brand)"/><path d="M6 8.5c0-1.1.9-2 2-2h8.6c.53 0 1.04.21 1.41.59l1.4 1.41V17a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8.5Z" fill="rgba(255,255,255,.92)"/><path d="M17 9h-2.25a1.75 1.75 0 0 1-1.75-1.75V5.5" fill="none" stroke="#b45f44" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12h6M9 15h4" fill="none" stroke="#2d3a3a" stroke-width="1.4" stroke-linecap="round"/></svg>
+                CourseFlow
+            </div>
+            <div class="gc-topbar-spacer"></div>
+            <div class="gc-user-chip">
+                <span class="gc-user-name" data-user-name></span>
+                <div class="gc-user-avatar" id="gc-user-avatar"></div>
+            </div>
+        </header>
+
+        <main class="gc-course-page">
+            <div id="course-stream-status"></div>
+
+            <!-- Course banner (rendered by JS) -->
+            <div id="course-hero"></div>
+
+            <!-- Tab bar (rendered by JS into #course-tabs) -->
+            <nav class="course-tabs-bar" id="course-tabs-bar"></nav>
+
+            <!-- Tab content shell -->
+            <div class="course-page-body">
+                <aside id="course-side-panel" class="course-shell-side"></aside>
+
+                <div class="course-tab-body">
+                    <div id="tab-stream" class="course-tab-pane">
+                        <div id="course-stream-list" class="course-stream-list"></div>
+                    </div>
+                    <div id="tab-classwork" class="course-tab-pane hidden">
+                        <div id="course-classwork-list"></div>
+                    </div>
+                    <div id="tab-people" class="course-tab-pane hidden">
+                        <div id="course-people-list"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
