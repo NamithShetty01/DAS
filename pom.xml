@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.5</version>
+        <version>3.5.0</version>
         <relativePath/>
     </parent>
 
@@ -17,7 +17,9 @@
     <description>Production-ready Spring Boot project for digital assignment submission.</description>
 
     <properties>
-        <java.version>25</java.version>
+        <java.version>17</java.version>
+        <tomcat.version>10.1.52</tomcat.version>
+        <spring-framework.version>6.2.11</spring-framework.version>
         <jjwt.version>0.11.5</jjwt.version>
         <lombok.version>1.18.38</lombok.version>
     </properties>
